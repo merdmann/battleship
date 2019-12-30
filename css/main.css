@@ -1,0 +1,16 @@
+.circle {
+    perspective: 1000px;
+    animation-name: flip;
+    animation-duration: 4s;
+}
+
+@keyframes flip {
+    from {
+        transform: rotateY(0deg);
+        color: yellow;
+    }
+    to {
+        transform: rotateY(180deg);
+        color: green;
+    }
+}
