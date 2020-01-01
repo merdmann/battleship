@@ -1,6 +1,6 @@
 'use strict'
 
-document.addEventListener('DOMConentLoadeded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   console.log("***** html loaded");
 
 } /* DOMConentLoaded */ )
