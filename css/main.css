@@ -1,16 +1,12 @@
-.circle {
-    perspective: 1000px;
-    animation-name: flip;
-    animation-duration: 4s;
+.battleground {
+    width: 500px;
+    height: 500px;
+    background-color: red;
 }
 
-@keyframes flip {
-    from {
-        transform: rotateY(0deg);
-        color: yellow;
-    }
-    to {
-        transform: rotateY(180deg);
-        color: green;
-    }
+.cell {
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    transform: translate(100px, 100px);
 }
