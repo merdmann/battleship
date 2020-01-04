@@ -2,6 +2,8 @@
     width: 500px;
     height: 500px;
     background-color: red;
+    perspective: none;
+
 }
 
 .cell {
@@ -9,4 +11,6 @@
     height: 10px;
     background-color: white;
     transform: translate(100px, 100px);
+    transform-origin: 0px 0px 0px;
+    perspective: none;
 }
