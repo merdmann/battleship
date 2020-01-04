@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   /**
    * place a marker at x,y
-   * @param {*} name
+   * @param {x,y, color )
    */
   function mark ( x, y, color ) {
     const _root_ = document.getElementById('root');
@@ -82,10 +82,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
     elem.style.setProperty("background-color",  color ); ;
   }
 
-
   /**
    *
-   * @param {change bg color od the battelgroundc} to color
+   * @param {change bg color of the battel ground to color }
    */
   function setBG(color) {
     console.log("changing bg color to " + color );
@@ -98,15 +97,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
     //setupBG();
     setBG("blue")
 
-    mark( 3,3);
-    mark( 3,4);
-    mark( 3,5);
-    mark( 3,6);
+    mark( 3,0, "red");
+    mark( 3,1, "red");
+    mark( 3,2, "red");
     
-    mark( 3,3, "red");
-    mark( 4,3, "red");
-    mark( 5,3, "red");
-    mark( 6,3, "red");
+    mark( 3,3, "yellow");
+    mark( 4,3, "yellow");
+    mark( 5,3, "yellow");
   }
 
   main(event)
