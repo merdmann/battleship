@@ -92,11 +92,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
     _root_.innerHTML +=`<div id="${name}" class="cell"></div>`;
 
     const elem = document.getElementById(name);
-    elem.style.setProperty("transform", "transform-origin"," 0px 0px");
+    //elem.style.setProperty("transform", "transform-origin"," 0px 0px");
     elem.style.setProperty("transform", 'translate('+ XtoPx(x) + ", " + YToPx(y) + ")" );
     elem.style.setProperty("background-color",  color ); 
-    elem.onclick = fire;
-  }
+    elem.addEventListener( 'click', function (event) {console.log("click" + event); })
+    } 
 
   /**
    *
