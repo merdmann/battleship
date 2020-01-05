@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
     /* 8 */ [' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     /* 9 */ [' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   ];
-
+ 
+  /**
+   * 
+   * @param {*} max
+   * This will return on each call a random number 0..max  
+   */
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -23,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
     const _root_ = document.getElementById('root');
 
     for(let ax=0; ax<shipSize; ++ax ) {
-      mark( x0 + ax, y0 )
+      if(x0 +ax < 10 && y0<10)
+        mark( x0 + ax, y0, "yellow" )
     }
   }
 
@@ -31,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
     const _root_ = document.getElementById('root');
 
     for(var by=0; by<shipSize; ++by ) {
-      mark( x0, y0+by );
+      if( x0 < 10 && (y0+by)<10)
+        mark( x0, y0+by, "red" );
     }
   }
   /**
@@ -57,14 +64,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
               shipY(ix, iy, shipSize);
             break;
         }
-
       }
     }
   }
 
+  /***
+   * convert game coordinates to board coordinates
+   * 
+   */
   function XtoPx(x) {return x*50+"px";}
 
   function YToPx(y) { return y*50 + "px";}
+
+  function fire(x,y) {
+    console.log("fire("+x+","+y+")")
+  }
 
 
   /**
@@ -73,13 +87,15 @@ document.addEventListener('DOMContentLoaded', function (event) {
    */
   function mark ( x, y, color ) {
     const _root_ = document.getElementById('root');
-    _root_.innerHTML +=`<div id="${x}_${y}" class="cell"></div>`;
     const name = "" + x + "_" + y;
 
+    _root_.innerHTML +=`<div id="${name}" class="cell"></div>`;
+
     const elem = document.getElementById(name);
-    elem.style.setProperty("transform-origin"," 0px 0px");
+    elem.style.setProperty("transform", "transform-origin"," 0px 0px");
     elem.style.setProperty("transform", 'translate('+ XtoPx(x) + ", " + YToPx(y) + ")" );
-    elem.style.setProperty("background-color",  color ); ;
+    elem.style.setProperty("background-color",  color ); 
+    elem.onclick = fire;
   }
 
   /**
@@ -95,15 +111,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
   function main(event) {
     console.log(event)
     //setupBG();
-    setBG("blue")
+    setBG("blue");
 
-    mark( 3,0, "red");
-    mark( 3,1, "red");
-    mark( 3,2, "red");
-    
-    mark( 3,3, "yellow");
-    mark( 4,3, "yellow");
-    mark( 5,3, "yellow");
+    setupBG();
   }
 
   main(event)
