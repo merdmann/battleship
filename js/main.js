@@ -1,4 +1,5 @@
 
+
 document.addEventListener('DOMContentLoaded', function (event) {
   console.log("***** html loaded");
 
@@ -14,11 +15,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
     /* 8 */ [' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     /* 9 */ [' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   ];
- 
+
   /**
-   * 
+   *
    * @param {*} max
-   * This will return on each call a random number 0..max  
+   * This will return on each call a random number 0..max
    */
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -70,14 +71,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   /***
    * convert game coordinates to board coordinates
-   * 
+   *
    */
   function XtoPx(x) {return x*50+"px";}
 
   function YToPx(y) { return y*50 + "px";}
 
-  function fire(x,y) {
-    console.log("fire("+x+","+y+")")
+  const fire = function (event) {
+    console.log(event.clientX + ", " +  event.clientY );
   }
 
 
@@ -87,16 +88,15 @@ document.addEventListener('DOMContentLoaded', function (event) {
    */
   function mark ( x, y, color ) {
     const _root_ = document.getElementById('root');
-    const name = "" + x + "_" + y;
+    const name = "" + x + "," + y;
 
     _root_.innerHTML +=`<div id="${name}" class="cell"></div>`;
+    _root_.onclick = fire;
 
     const elem = document.getElementById(name);
-    //elem.style.setProperty("transform", "transform-origin"," 0px 0px");
     elem.style.setProperty("transform", 'translate('+ XtoPx(x) + ", " + YToPx(y) + ")" );
-    elem.style.setProperty("background-color",  color ); 
-    elem.addEventListener( 'click', function (event) {console.log("click" + event); })
-    } 
+    elem.style.setProperty("background-color",  color );
+    }
 
   /**
    *
