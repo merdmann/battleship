@@ -14,3 +14,14 @@
     perspective: none;
     position: absolute;
 }
+
+.hit {
+    width: 50px;
+    height: 50px;
+    background-color: "white";
+    background-size:  contain;
+    background-image: url("../img/hit.png");
+    transform: translate(100px, 100px);
+    perspective: none;
+    position: absolute;
+}

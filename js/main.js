@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     for(let ax=0; ax<shipSize; ++ax ) {
       if(x0 +ax < 10 && y0<10)
-        mark( x0 + ax, y0, "yellow" )
+        mark( x0 + ax, y0, "yellow", "cell" )
     }
   }
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     for(var by=0; by<shipSize; ++by ) {
       if( x0 < 10 && (y0+by)<10)
-        mark( x0, y0+by, "red" );
+        mark( x0, y0+by, "red", "cell" );
     }
   }
   /**
@@ -59,10 +59,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
         switch(dir) {
           case 1: /* running along the x axis*/
               shipX(ix,iy, shipSize);
+              cell[ ix][iy ] = 'X'
             break;
 
           case 2: /* running along the y axis */
               shipY(ix, iy, shipSize);
+              cell[ ix][iy] ='X'
             break;
         }
       }
@@ -78,19 +80,28 @@ document.addEventListener('DOMContentLoaded', function (event) {
   function YToPx(y) { return y*50 + "px";}
 
   const fire = function (event) {
-    console.log(event.clientX + ", " +  event.clientY );
-  }
+    const x = Math.floor( event.clientX / 50)
+    const y = Math.floor( event.clientY / 50)
 
+    console.log("x: " +  x + ", y: " +y )
+
+    if( cell[x][y] === "X") {
+      console.log("**HIT**");
+      mark(x,y,"gray", "hit")
+    }
+  }
 
   /**
    * place a marker at x,y
    * @param {x,y, color )
    */
-  function mark ( x, y, color ) {
+  function mark ( x, y, color, cls ) {
     const _root_ = document.getElementById('root');
     const name = "" + x + "," + y;
-
-    _root_.innerHTML +=`<div id="${name}" class="cell"></div>`;
+    if( color === "gray") 
+    _root_.innerHTML +=`<div id="${name}" class="${cls}"></div>`;
+    else
+    _root_.innerHTML +=`<div id="${name}" class="${cls}"></div>`;
     _root_.onclick = fire;
 
     const elem = document.getElementById(name);
