@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   ];
 
   var hitscore = 0;
-
+  var shipId = 0;
   /**
    *
    * @param {*} max
@@ -27,22 +27,29 @@ document.addEventListener('DOMContentLoaded', function (event) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+
+  function vessel() {
+    return 'BB' + shipId;
+  }
+
   function shipX(x0, y0, shipSize) {
-    const _root_ = document.getElementById('root');
+    console.log('new vessel X :' + vessel() )
 
     for (let ax = 0; ax < shipSize; ++ax) {
       if (x0 + ax < 10 && y0 < 10)
         mark(x0 + ax, y0, "yellow", "cell")
     }
+
+    return ++shipId;
   }
 
   function shipY(x0, y0, shipSize) {
-    const _root_ = document.getElementById('root');
-
+    console.log( 'new vessel :' + vessel() )
     for (var by = 0; by < shipSize; ++by) {
       if (x0 < 10 && (y0 + by) < 10)
         mark(x0, y0 + by, "red", "cell");
     }
+    return ++shipId;
   }
   /**
    * Setup the battle ground. For every cell i will decide to place
@@ -50,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
    */
   function setupBG() {
     setBG("blue");
+    shipId = 0;
     const _root_ = document.getElementById('root');
 
     for (var iy = 0; iy < 10; ++iy) {
@@ -57,20 +65,33 @@ document.addEventListener('DOMContentLoaded', function (event) {
         const shipSize = getRandomInt(8);
         const dir = getRandomInt(3);
 
-        console.log("shipSize:" + shipSize + ", dir:" + dir)
+        console.log("shipSize:" + shipSize + ", dir:" + dir + ", shipId:" + shipId)
         switch (dir) {
           case 1: /* running along the x axis*/
-            shipX(ix, iy, shipSize)
-            cell[ix][iy] = X
+            shipId = shipX(ix, iy, shipSize)
+            cell[ix][iy] = vessel()
             break;
 
           case 2: /* running along the y axis */
-            shipY(ix, iy, shipSize)
-            cell[ix][iy] = 'X'
+            shipId = shipY(ix, iy, shipSize)
+            cell[ix][iy] = vessel()
             break;
         }
       }
     }
+  }
+
+  /**
+   * 
+   * @param {check whether the last hist has sunk the ship } name 
+   */
+  function is_sunk(name) {
+    let result = false;
+
+    for (let y = 0; y < 10; ++y)
+      result = result | cell[y].includes(name);
+
+    return result;
   }
 
   /***
@@ -85,15 +106,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
     const x = Math.floor(event.clientX / 50)
     const y = Math.floor(event.clientY / 50)
 
-    console.log("x: " + x + ", y: " + y)
-
-    if (cell[x][y] === "X") {
-      console.log("**HIT**" + x + y)
+    if (cell[x][y] !== " ") {
+      const shipName = cell[x][y]
+      console.log("**HIT** x:" + x + ", y:" + y + ', vessel: ' + shipName)
       mark(x, y, "gray", "hit")
       /* display the hit score */
-      hitscore += 10
-      const _hitscore_ = document.getElementById("hitscore")
+      const _hitscore_ = document.getElementById('hitscore')
+      if (is_sunk(cell[y])) {
+        console.log("Ship sunk" + cell[y][0])
+        hitscore += 10;
+      }
+      else {
+        hitscore += 100
+      }
       _hitscore_.innerHTML = hitscore
+      _hitscore_.innerHTMl
     }
   }
 
