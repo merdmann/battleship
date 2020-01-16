@@ -7,6 +7,8 @@
 }
 
 .cell {
+    font-size: x-small;
+    text-align: center;
     width: 50px;
     height: 50px;
     background-color: white;
@@ -16,6 +18,8 @@
 }
 
 .hit {
+    font-size: x-small;
+    text-align: center;
     width: 50px;
     height: 50px;
     background-color: white;

@@ -27,28 +27,40 @@ document.addEventListener('DOMContentLoaded', function (event) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+  function is_set(x,y) {
+    return cell[y][x] !== " ";
+  }
 
-  function vessel() {
-    return 'BB' + shipId;
+  function vessel(ship) {
+    return 'BB' + ship;
   }
 
   function shipX(x0, y0, shipSize) {
-    console.log('new vessel X :' + vessel() )
+    console.log('new X vessel : ' + vessel(shipId) )
 
+    // layout the ship
     for (let ax = 0; ax < shipSize; ++ax) {
-      if (x0 + ax < 10 && y0 < 10)
+      if (x0 + ax < 10 && y0 < 10) {
         mark(x0 + ax, y0, "yellow", "cell")
+        cell[y0][x0+ax] = vessel(shipId)
+      }
     }
-
     return ++shipId;
   }
 
   function shipY(x0, y0, shipSize) {
-    console.log( 'new vessel :' + vessel() )
+    console.log( 'new vessel :' + vessel( shipId) )
+
+    //layout the the new vessel
     for (var by = 0; by < shipSize; ++by) {
-      if (x0 < 10 && (y0 + by) < 10)
+      if (x0 < 10 && (y0 + by) < 10 && !is_set(x0,y0+by) ) {
         mark(x0, y0 + by, "red", "cell");
+
+        cell[x0][y0+ by] = vessel( ++shipId)
+      }
     }
+
+    //allocate a new vessel id 
     return ++shipId;
   }
   /**
@@ -69,12 +81,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
         switch (dir) {
           case 1: /* running along the x axis*/
             shipId = shipX(ix, iy, shipSize)
-            cell[ix][iy] = vessel()
+            cell[ix][iy] = vessel(shipId)
             break;
 
           case 2: /* running along the y axis */
             shipId = shipY(ix, iy, shipSize)
-            cell[ix][iy] = vessel()
+            cell[ix][iy] = vessel(shipId)
             break;
         }
       }
@@ -107,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     const y = Math.floor(event.clientY / 50)
 
     if (cell[x][y] !== " ") {
-      const shipName = cell[x][y]
+      const shipName = cell[y][x]
       console.log("**HIT** x:" + x + ", y:" + y + ', vessel: ' + shipName)
       mark(x, y, "gray", "hit")
       /* display the hit score */
@@ -134,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     if (color === "gray")
       _root_.innerHTML += `<div id="${name}" class="${cls}"></div>`;
     else
-      _root_.innerHTML += `<div id="${name}" class="${cls}"></div>`;
+      _root_.innerHTML += `<div id="${name}" class="${cls}">${cell[y][x]}</div>`;
 
     _root_.onclick = fire;
 
