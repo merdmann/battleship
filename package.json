@@ -1,0 +1,26 @@
+{
+    "name": "yes",
+    "version": "1.0.0",
+    "description": "This will be simple implementation of the german \"Schiffe versenken\"",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {
+        "chai": "^4.2.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "mocha --extension spec"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/merdmann/battleship.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/merdmann/battleship/issues"
+    },
+    "homepage": "https://github.com/merdmann/battleship#readme"
+}
