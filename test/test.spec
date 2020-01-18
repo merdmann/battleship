@@ -1,13 +1,20 @@
-import { shipX, shipY} from '../js/common.mjs'
+describe('3 block battleship', function () {
+    it( 'all blocks have the same vaessel name', function () {
+        let id = shipX( 2, 2, 3)
+        let vessel = cell[2][1]
 
-var assert = require('assert');
-    describe('Basic Mocha String Test', function () {
-        it('3 blocks battle ship with a given name', function () {
-            shipX( 2, 2, 3);
-            let vessel = cell[2][2];
+        let inrow = true;
+        inrow = inrow & ( vessel === cell[2][2] )
+        inrow = inrow & ( vessel === cell[2][3] )
 
-        assert.equal("Hello".length, 4);}); 
-    it('should return first charachter of the string', function () {
-        assert.equal("Hello".charAt(0), 'H');
+        console.log( "vessel " + cell[2][2]);
+        console.log( 'id :' + id)
+        assert.equal(inrow, true)
+    }); 
+    it('should return some usefull vessel id like BB<nbr>', function () {
+        let vessel = cell[2][2];
+
+        assert.equal(vessel.charAt(1), 'B');
+        assert.equal(vessel.charAt(0), 'B');
     });
 });

@@ -19,9 +19,8 @@ var cell = [
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     /* 9 */
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-];
+]
 
-export default cell
 
 var hitscore = 0
 var shipId = 0

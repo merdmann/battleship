@@ -1,7 +1,6 @@
 /**
  * This file comntains common functions of the battle ship game.
  */
-import cell from '../js/common.mjs'
 
 var hitscore = 0
 var shipId = 0
