@@ -11,22 +11,19 @@
     <link rel="icon" href="images/favicon.png" />
 </head>
 
-<body>
-    <div class="continer">
+<body onload="JavaScript:timedRefresh(5000)">
+    <div class="container">
         <div class="row"></div>
         <div class="col-sm">
-            <div id="root" class="battleground">
+            <div id="root" class="world">
             </div>
         </div>
         <div class="col-sm">
-            <h1>Score</h1>
-            <span id="hitscore"></span>
-            <img width="50px" height="50px" src="./img/hit.png">
         </div>
         <div>
         </div>
-        <script src="../js/common.js"></script>
-        <script src="./js/main.js">
+        <script type="module" src="../lib/common.js"></script>
+        <script type="module" src="../js/main.js">
         </script>
     </div>
 </body>

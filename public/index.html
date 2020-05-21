@@ -21,11 +21,14 @@
     <script>
         // Set chai.expect as a global variable
         var expect = chai.expect;
-        var assert = chai.assert
+        var assert = chai.assert;
+        var should = chai.should;
 
         // Setup Mocha to use the BDD interface
         mocha.setup('bdd');
     </script>
+
+    <h1>Score</h1><span id="hitscore"></span>
 
     <!-- Import the sum function -->
     <script src="../js/common.js"></script>

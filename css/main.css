@@ -1,9 +1,8 @@
-.battleground {
+.world {
     width: 500px;
     height: 500px;
     background-color: red;
     perspective: none;
-
 }
 
 .cell {
@@ -17,26 +16,27 @@
     position: absolute;
 }
 
-.hit {
+.alife {
     font-size: x-small;
     text-align: center;
     width: 50px;
     height: 50px;
     background-color: white;
-    background-size:  contain;
-    background-image: url("../img/hit.png");
     transform: translate(100px, 100px);
     perspective: none;
     position: absolute;
 }
 
-.hint {
+.dead {
+    font-size: x-small;
+    text-align: center;
     width: 50px;
     height: 50px;
-    background-color: white;
-    background-size:  contain;
-    background-image: url("../img/ship.png");
+    background-color: black;
     transform: translate(100px, 100px);
     perspective: none;
     position: absolute;
+}
+
+
 }
